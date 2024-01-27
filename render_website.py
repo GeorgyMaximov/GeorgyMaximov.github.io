@@ -8,7 +8,7 @@ from more_itertools import chunked
 
 def on_reload():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--books_info_path', default='.')
+    parser.add_argument('--books_info_path', default='books_info.json')
     args = parser.parse_args()
     env = Environment(
         loader=FileSystemLoader('.'),
@@ -18,7 +18,7 @@ def on_reload():
     
     row_number = 5
     books_in_row = 2
-    with open(f'{args.books_info_path}/books_info.json', 'r', encoding='utf8') as file:
+    with open(args.books_info_path}, 'r', encoding='utf8') as file:
         book_row = list(chunked(json.load(file), books_in_row))
 
     books_info = list(chunked(book_row, row_number))
